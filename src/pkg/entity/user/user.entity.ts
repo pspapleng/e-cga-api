@@ -1,12 +1,15 @@
 import { Exclude } from 'class-transformer'
-import { Column, Entity } from 'typeorm'
+import { Column, Entity, OneToMany } from 'typeorm'
+import { PatientEntity } from '../patient/patient.entity'
 import { BaseEntity } from '../_base/base.entity'
-import { UserRole } from './user-role.enum'
 
 @Entity({ name: 'user' })
 export class UserEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 255, unique: true })
-  email: string
+  username: string
+
+  @Column({ type: 'varchar', length: 15, unique: true })
+  nurseId: string
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   firstName: string
@@ -18,6 +21,6 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'text' })
   password: string
 
-  @Column({ type: 'enum', enum: UserRole, nullable: false })
-  role: UserRole
+  @OneToMany(() => PatientEntity, (patient) => patient.user)
+  patient: PatientEntity[]
 }

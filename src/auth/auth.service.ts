@@ -27,8 +27,7 @@ export class AuthService {
   public async createSession(user: UserEntity) {
     const payload: JwtPayload = {
       id: user.id,
-      email: user.email,
-      role: user.role,
+      username: user.username,
     }
 
     const accessToken = this.jwtService.sign(payload)
@@ -40,7 +39,7 @@ export class AuthService {
 
   public async validateUser(dto: CreateSessionDto) {
     const user = await this.userRepository.findOne({
-      email: dto.email,
+      username: dto.username,
     })
     if (!user) throw new UnauthorizedException('user_not_found')
     const isMatch = await bcryptjs.compare(dto.password, user.password)
