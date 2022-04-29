@@ -13,23 +13,22 @@ export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: unknown, host: ArgumentsHost) {
     const context = host.switchToHttp()
     const response = context.getResponse<Response>()
-    const message = (exception as Error).message
-    let status = HttpStatus.INTERNAL_SERVER_ERROR
 
-    switch (exception.constructor) {
-      case EntityNotFoundError: {
+    if (exception instanceof HttpException) {
+      response
+        .status((exception as HttpException).getStatus())
+        .json((exception as HttpException).getResponse())
+    } else {
+      const message = (exception as Error).message
+      let status = HttpStatus.INTERNAL_SERVER_ERROR
+      if (exception instanceof EntityNotFoundError) {
         status = HttpStatus.NOT_FOUND
-        break
       }
-      case HttpException: {
-        status = (exception as HttpException).getStatus()
-        break
-      }
+      response.status(status).json({
+        statusCode: status,
+        message: message,
+        error: statuses(status),
+      })
     }
-    response.status(status).json({
-      statusCode: status,
-      message: message,
-      error: statuses(status),
-    })
   }
 }
