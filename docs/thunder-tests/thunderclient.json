@@ -366,5 +366,23 @@
       "bearer": "{{access_token}}"
     },
     "tests": []
+  },
+  {
+    "_id": "98c8add1-a2ad-4a67-be5d-0067fc18cad4",
+    "colId": "ce38adfa-cf78-4507-930b-6494c962fed3",
+    "containerId": "dbb03b86-ebbb-4ab6-a2e3-79ffc65d7103",
+    "name": "get result by id",
+    "url": "{{base_url}}/result/{{result_id}}",
+    "method": "GET",
+    "sortNum": 100000,
+    "created": "2022-04-29T17:59:51.681Z",
+    "modified": "2022-04-29T18:00:05.627Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{access_token}}"
+    },
+    "tests": []
   }
 ]

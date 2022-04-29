@@ -3,6 +3,7 @@ import {
   ClassSerializerInterceptor,
   Controller,
   Get,
+  Param,
   Post,
   Query,
   UseFilters,
@@ -31,5 +32,10 @@ export class ResultController {
   @Get('/')
   async getPagination(@Query() query: QueryResultDto): Promise<IResult[]> {
     return await this.resultService.getPagination(query)
+  }
+
+  @Get('/:id')
+  async getById(@Param('id') id: string): Promise<IResult> {
+    return await this.resultService.getById(id)
   }
 }

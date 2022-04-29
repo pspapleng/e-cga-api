@@ -39,4 +39,8 @@ export class ResultService {
       take: query.limit,
     })
   }
+
+  async getById(id: string): Promise<IResult> {
+    return await this.resultRepository.findOneOrFail({ id })
+  }
 }
