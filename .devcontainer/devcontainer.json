@@ -24,7 +24,8 @@
     "rvest.vs-code-prettier-eslint",
     "ms-vscode.vscode-typescript-next",
     "cmstead.jsrefactor",
-    "rangav.vscode-thunder-client"
+    "rangav.vscode-thunder-client",
+    "cweijan.vscode-postgresql-client2"
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.

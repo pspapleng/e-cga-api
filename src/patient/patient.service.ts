@@ -1,13 +1,10 @@
-import {
-  Injectable,
-  InternalServerErrorException,
-  NotFoundException,
-} from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { IPatient } from 'src/pkg/entity/patient/patient.interface'
 import { PatientRepository } from 'src/pkg/entity/patient/patient.repository'
 import { UserEntity } from 'src/pkg/entity/user/user.entity'
 import { CreatePatientDto } from './dto/create-patient.dto'
+import { QueryPatientDto } from './dto/query-patient.dto'
 import { UpdatePatientDto } from './dto/update-patient.dto'
 
 @Injectable()
@@ -17,7 +14,7 @@ export class PatientService {
     private patientRepository: PatientRepository,
   ) {}
 
-  public async createPatient(
+  public async createOne(
     dto: CreatePatientDto,
     user: UserEntity,
   ): Promise<IPatient> {
@@ -32,49 +29,43 @@ export class PatientService {
     patient.waistline = dto.waistline
     patient.fallHistory = dto.fallHistory
     patient.user = user
+
     const result = await this.patientRepository.save(patient)
     return result
   }
 
-  public async updatePatient(
+  public async updateById(
     id: string,
     dto: UpdatePatientDto,
   ): Promise<IPatient> {
-    let patient = await this.patientRepository
-      .findOneOrFail({ id })
-      .catch(({ message }) => {
-        throw new NotFoundException(message)
-      })
+    let patient = await this.patientRepository.findOneOrFail({ id })
 
-    console.log(patient)
     patient = { ...patient, ...dto }
 
-    const result = await this.patientRepository
-      .save(patient)
-      .catch(({ message }) => {
-        throw new InternalServerErrorException(message)
-      })
+    const result = await this.patientRepository.save(patient)
 
     return result
   }
 
-  // public async updatePatient(dto: CreatePatientDto, user: UserEntity) {
-  //   const patient = this.patientRepository.create()
-  //   patient.firstName = dto.firstName
-  //   patient.lastName = dto.lastName
-  //   patient.dob = dto.dob
-  //   patient.gender = dto.gender
-  //   patient.height = dto.height
-  //   patient.weight = dto.weight
-  //   patient.bmi = dto.bmi
-  //   patient.waistline = dto.waistline
-  //   patient.fallHistory = dto.fallHistory
-  //   patient.user = user
-  //   await this.patientRepository.save(patient)
-  //   return patient
-  // }
+  async getPagination(query: QueryPatientDto): Promise<IPatient[]> {
+    const patients = await this.patientRepository.find({
+      take: query.limit,
+      skip: query.skip,
+    })
 
-  // public async getAllPatients() {
-  //   return this.patientRepository.find()
-  // }
+    return patients
+  }
+
+  async getById(id: string): Promise<IPatient> {
+    const patient = await this.patientRepository.findOneOrFail({ id })
+
+    return patient
+  }
+
+  async deleteById(id: string): Promise<boolean> {
+    const patient = await this.patientRepository.findOneOrFail({ id })
+
+    await this.patientRepository.remove(patient)
+    return true
+  }
 }

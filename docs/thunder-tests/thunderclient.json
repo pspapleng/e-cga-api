@@ -225,5 +225,70 @@
         "value": ""
       }
     ]
+  },
+  {
+    "_id": "1c565103-a9b5-4219-bfe4-bf744cc157bb",
+    "colId": "ce38adfa-cf78-4507-930b-6494c962fed3",
+    "containerId": "51fec7a5-e4f5-4c2e-801b-bb6ef24669db",
+    "name": "get patient by id",
+    "url": "{{base_url}}/patient/{{#guid}}",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2022-04-29T16:14:08.573Z",
+    "modified": "2022-04-29T16:29:18.957Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{access_token}} "
+    },
+    "tests": []
+  },
+  {
+    "_id": "bfcc4649-91d1-4c3e-aff1-df281ecccefc",
+    "colId": "ce38adfa-cf78-4507-930b-6494c962fed3",
+    "containerId": "51fec7a5-e4f5-4c2e-801b-bb6ef24669db",
+    "name": "delete patient by id",
+    "url": "{{base_url}}/patient/{{patient_id}}",
+    "method": "DELETE",
+    "sortNum": 70000,
+    "created": "2022-04-29T17:07:37.574Z",
+    "modified": "2022-04-29T17:15:50.004Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{access_token}} "
+    },
+    "tests": []
+  },
+  {
+    "_id": "d1a5b3bc-c3b0-4249-93fd-421a0c789063",
+    "colId": "ce38adfa-cf78-4507-930b-6494c962fed3",
+    "containerId": "51fec7a5-e4f5-4c2e-801b-bb6ef24669db",
+    "name": "get patient  pagination",
+    "url": "{{base_url}}/patient?skip=1&limit=1",
+    "method": "GET",
+    "sortNum": 65000,
+    "created": "2022-04-29T17:17:23.211Z",
+    "modified": "2022-04-29T17:17:47.387Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "skip",
+        "value": "1",
+        "isPath": false
+      },
+      {
+        "name": "limit",
+        "value": "1",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{access_token}} "
+    },
+    "tests": []
   }
 ]
