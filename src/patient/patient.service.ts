@@ -1,8 +1,14 @@
-import { Injectable } from '@nestjs/common'
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
+import { IPatient } from 'src/pkg/entity/patient/patient.interface'
 import { PatientRepository } from 'src/pkg/entity/patient/patient.repository'
 import { UserEntity } from 'src/pkg/entity/user/user.entity'
 import { CreatePatientDto } from './dto/create-patient.dto'
+import { UpdatePatientDto } from './dto/update-patient.dto'
 
 @Injectable()
 export class PatientService {
@@ -11,7 +17,10 @@ export class PatientService {
     private patientRepository: PatientRepository,
   ) {}
 
-  public async createPatient(dto: CreatePatientDto, user: UserEntity) {
+  public async createPatient(
+    dto: CreatePatientDto,
+    user: UserEntity,
+  ): Promise<IPatient> {
     const patient = this.patientRepository.create()
     patient.firstName = dto.firstName
     patient.lastName = dto.lastName
@@ -23,8 +32,30 @@ export class PatientService {
     patient.waistline = dto.waistline
     patient.fallHistory = dto.fallHistory
     patient.user = user
-    await this.patientRepository.save(patient)
-    return patient
+    const result = await this.patientRepository.save(patient)
+    return result
+  }
+
+  public async updatePatient(
+    id: string,
+    dto: UpdatePatientDto,
+  ): Promise<IPatient> {
+    let patient = await this.patientRepository
+      .findOneOrFail({ id })
+      .catch(({ message }) => {
+        throw new NotFoundException(message)
+      })
+
+    console.log(patient)
+    patient = { ...patient, ...dto }
+
+    const result = await this.patientRepository
+      .save(patient)
+      .catch(({ message }) => {
+        throw new InternalServerErrorException(message)
+      })
+
+    return result
   }
 
   // public async updatePatient(dto: CreatePatientDto, user: UserEntity) {
