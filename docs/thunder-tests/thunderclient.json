@@ -332,5 +332,39 @@
         "value": "{{result_id}}"
       }
     ]
+  },
+  {
+    "_id": "4c92f4c9-c9e8-48a0-b7b6-44c0eb038813",
+    "colId": "ce38adfa-cf78-4507-930b-6494c962fed3",
+    "containerId": "dbb03b86-ebbb-4ab6-a2e3-79ffc65d7103",
+    "name": "get result pagination",
+    "url": "{{base_url}}/result?patientId={{patient_id}}&skip=0&limit=10",
+    "method": "GET",
+    "sortNum": 90000,
+    "created": "2022-04-29T17:57:35.716Z",
+    "modified": "2022-04-29T17:58:24.013Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "patientId",
+        "value": "{{patient_id}}",
+        "isPath": false
+      },
+      {
+        "name": "skip",
+        "value": "0",
+        "isPath": false
+      },
+      {
+        "name": "limit",
+        "value": "10",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{access_token}}"
+    },
+    "tests": []
   }
 ]

@@ -2,7 +2,9 @@ import {
   Body,
   ClassSerializerInterceptor,
   Controller,
+  Get,
   Post,
+  Query,
   UseFilters,
   UseGuards,
   UseInterceptors,
@@ -11,6 +13,7 @@ import { IResult } from 'src/pkg/entity/result/result.interface'
 import { HttpExceptionFilter } from 'src/pkg/filter/http-exception.filter'
 import { JwtAuthGuard } from 'src/pkg/guard/jwt-auth.guard'
 import { CreateResultDto } from './dto/create-result.dto'
+import { QueryResultDto } from './dto/query-result.dto'
 import { ResultService } from './result.service'
 
 @Controller('result')
@@ -23,5 +26,10 @@ export class ResultController {
   @Post('/')
   async createOne(@Body() dto: CreateResultDto): Promise<IResult> {
     return this.resultService.createOne(dto)
+  }
+
+  @Get('/')
+  async getPagination(@Query() query: QueryResultDto): Promise<IResult[]> {
+    return await this.resultService.getPagination(query)
   }
 }
