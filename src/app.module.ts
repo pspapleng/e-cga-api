@@ -14,6 +14,7 @@ import { PatientEntity } from './pkg/entity/patient/patient.entity'
 import { ResultEntity } from './pkg/entity/result/result.entity'
 import { UserEntity } from './pkg/entity/user/user.entity'
 import { UserModule } from './user/user.module'
+import { ResultModule } from './result/result.module';
 
 @Module({
   imports: [
@@ -64,6 +65,7 @@ import { UserModule } from './user/user.module'
     AuthModule,
     UserModule,
     PatientModule,
+    ResultModule,
   ],
   controllers: [HealthController],
   providers: [],
