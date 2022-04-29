@@ -5,7 +5,7 @@
     "default": true,
     "sortNum": 10000,
     "created": "2022-04-29T14:53:00.223Z",
-    "modified": "2022-04-29T17:08:55.545Z",
+    "modified": "2022-04-29T17:52:14.983Z",
     "data": [
       {
         "name": "base_url",
@@ -25,7 +25,11 @@
       },
       {
         "name": "patient_id",
-        "value": "343722b2-be39-484b-9eae-2ac2d82bad6f"
+        "value": "ea2702c4-c321-4e8c-acbf-d08441253206"
+      },
+      {
+        "name": "result_id",
+        "value": "62949f9c-8ea0-4777-bf55-841eb5d8c329"
       }
     ]
   }

@@ -290,5 +290,47 @@
       "bearer": "{{access_token}} "
     },
     "tests": []
+  },
+  {
+    "_id": "bee05a4d-75e9-4733-8730-2f950f305d24",
+    "colId": "ce38adfa-cf78-4507-930b-6494c962fed3",
+    "containerId": "dbb03b86-ebbb-4ab6-a2e3-79ffc65d7103",
+    "name": "create result",
+    "url": "{{base_url}}/result",
+    "method": "POST",
+    "sortNum": 80000,
+    "created": "2022-04-29T17:37:30.143Z",
+    "modified": "2022-04-29T17:52:13.744Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"patientId\": \"{{patient_id}}\",\n  \"result\": {\n    \"MNA\": \"{{#string}}\",\n    \"OCA\": \"{{#string}}\",\n    \"UIA\": \"{{#string}}\",\n    \"EYES\": \"{{#string}}\",\n    \"KNEE\": \"{{#string}}\",\n    \"OSTA\": \"{{#string}}\"\n  }\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{access_token}}"
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "201"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "isjson",
+        "value": ""
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{result_id}}"
+      }
+    ]
   }
 ]
