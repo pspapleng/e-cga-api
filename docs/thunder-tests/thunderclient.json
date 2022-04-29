@@ -1,0 +1,229 @@
+[
+  {
+    "_id": "e942c1fd-524a-4c3e-ad09-5613bcbd4b22",
+    "colId": "ce38adfa-cf78-4507-930b-6494c962fed3",
+    "containerId": "51fec7a5-e4f5-4c2e-801b-bb6ef24669db",
+    "name": "create patient",
+    "url": "{{base_url}}/patient",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2022-04-29T14:52:46.875Z",
+    "modified": "2022-04-29T15:53:54.731Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"firstName\": \"{{#string}}\",\n    \"lastName\": \"{{#string}}\",\n    \"dob\": \"{{#dateISO}}\",\n    \"gender\": \"{{#enum, female, male}}\",\n    \"height\": {{#number}},\n    \"weight\": {{#number}},\n    \"bmi\": {{#number}},\n    \"waistline\": {{#number}},\n    \"fallHistory\": {{#number}}\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{access_token}}"
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "201"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "isjson",
+        "value": ""
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{patient_id}}"
+      }
+    ]
+  },
+  {
+    "_id": "505c6f52-548f-43f9-9945-e1b77fe90e83",
+    "colId": "ce38adfa-cf78-4507-930b-6494c962fed3",
+    "containerId": "d02d999a-3c28-4d9c-9ad5-eefb56a26f1a",
+    "name": "sign in",
+    "url": "{{base_url}}/auth/sign-in",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-04-29T14:54:42.942Z",
+    "modified": "2022-04-29T15:08:49.394Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\"\n}",
+      "form": []
+    },
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.accessToken",
+        "action": "setto",
+        "value": "{{access_token}}"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "isjson",
+        "value": ""
+      },
+      {
+        "type": "json-query",
+        "custom": "json.accessToken",
+        "action": "istype",
+        "value": "string"
+      }
+    ]
+  },
+  {
+    "_id": "c6948365-bad0-4849-9dd3-d4c1f6e53a8f",
+    "colId": "ce38adfa-cf78-4507-930b-6494c962fed3",
+    "containerId": "9da39391-78cd-485d-88dc-7a8ab3785127",
+    "name": "create user",
+    "url": "{{base_url}}/user",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-04-29T14:56:27.229Z",
+    "modified": "2022-04-29T15:06:03.214Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"username\": \"{{#string}}\",\n    \"nurseId\": \"{{#number, 1000000, 999999}}\",\n    \"firstName\": \"{{#string}}\",\n    \"lastName\": \"{{#string}}\",\n    \"password\": \"{{password}}\"\n}",
+      "form": []
+    },
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.username",
+        "action": "setto",
+        "value": "{{username}}"
+      },
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "201"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "isjson",
+        "value": ""
+      },
+      {
+        "type": "json-query",
+        "custom": "json.username",
+        "action": "istype",
+        "value": "string"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.nurseId",
+        "action": "istype",
+        "value": "string"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.firstName",
+        "action": "istype",
+        "value": "string"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.lastName",
+        "action": "istype",
+        "value": "string"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.id",
+        "action": "istype",
+        "value": "string"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.createdAt",
+        "action": "istype",
+        "value": "string"
+      }
+    ]
+  },
+  {
+    "_id": "f541f172-2dc2-43c2-b7af-84b1a1152a4f",
+    "colId": "ce38adfa-cf78-4507-930b-6494c962fed3",
+    "containerId": "d02d999a-3c28-4d9c-9ad5-eefb56a26f1a",
+    "name": "me",
+    "url": "{{base_url}}/auth/me",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2022-04-29T15:08:55.584Z",
+    "modified": "2022-04-29T15:10:07.577Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{access_token}}"
+    },
+    "tests": [
+      {
+        "type": "json-query",
+        "custom": "json.username",
+        "action": "equal",
+        "value": "{{username}}"
+      },
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "isjson",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "_id": "a771d494-56a5-487c-b9d1-ad956452acd4",
+    "colId": "ce38adfa-cf78-4507-930b-6494c962fed3",
+    "containerId": "51fec7a5-e4f5-4c2e-801b-bb6ef24669db",
+    "name": "update patient by id",
+    "url": "{{base_url}}/patient/{{patient_id}}",
+    "method": "PATCH",
+    "sortNum": 20000,
+    "created": "2022-04-29T15:52:37.522Z",
+    "modified": "2022-04-29T15:59:34.711Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"firstName\": \"{{#string}}\",\n    \"lastName\": \"{{#string}}\",\n    \"dob\": \"{{#dateISO}}\",\n    \"gender\": \"{{#enum, female, male}}\",\n    \"height\": {{#number}},\n    \"weight\": {{#number}},\n    \"bmi\": {{#number}},\n    \"waistline\": {{#number}},\n    \"fallHistory\": {{#number}}\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{access_token}}"
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "201"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "isjson",
+        "value": ""
+      }
+    ]
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "ac809232-9ea1-4102-ab03-4ea8dd665e62",
+    "name": "e-cga-api",
+    "default": true,
+    "sortNum": 10000,
+    "created": "2022-04-29T14:53:00.223Z",
+    "modified": "2022-04-29T15:53:55.244Z",
+    "data": [
+      {
+        "name": "base_url",
+        "value": "localhost:8080/api"
+      },
+      {
+        "name": "access_token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjYWFjOWY3LTQ3NjctNGJjNS1hYTBiLTJjMTMxODNmMDcxNCIsInVzZXJuYW1lIjoiM2JlNTFlZDMtZGQ1ZC00NTEyLWE4MGEtOGRhNmRmYTIyMTdmIiwiaWF0IjoxNjUxMjQ0OTI5LCJleHAiOjE2NTM4MzY5Mjl9.ULhWys-8Gjn-6lTOL_xxj_eeZ6rs5TZJPmXifZC3l8M"
+      },
+      {
+        "name": "username",
+        "value": "3be51ed3-dd5d-4512-a80a-8da6dfa2217f"
+      },
+      {
+        "name": "password",
+        "value": "1234567890"
+      },
+      {
+        "name": "patient_id",
+        "value": "0998f7a8-0cc8-4e6e-b199-a8d9bc99de54"
+      }
+    ]
+  }
+]
