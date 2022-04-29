@@ -1,4 +1,4 @@
-export interface FormResult {
+export interface IFormResult {
   MNA: string
   OCA: string
   UIA: string
