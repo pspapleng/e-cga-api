@@ -6,6 +6,7 @@ import { LoggerModule } from 'nestjs-pino'
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
 import { AuthModule } from './auth/auth.module'
 import { HealthController } from './health/health.controller'
+import { PatientModule } from './patient/patient.module'
 import { AdminInitConfig } from './pkg/config/admin-init.config'
 import { DatabaseConfig } from './pkg/config/database.config'
 import { GenericConfig } from './pkg/config/generic.config'
@@ -62,6 +63,7 @@ import { UserModule } from './user/user.module'
     TerminusModule,
     AuthModule,
     UserModule,
+    PatientModule,
   ],
   controllers: [HealthController],
   providers: [],

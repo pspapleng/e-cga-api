@@ -22,6 +22,7 @@ export class UserService {
     )
     const user = this.userRepository.create()
     user.username = dto.username
+    user.nurseId = dto.nurseId
     user.firstName = dto.firstName
     user.lastName = dto.lastName
     user.password = hashedPassword

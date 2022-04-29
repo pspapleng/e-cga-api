@@ -1,8 +1,11 @@
-import { IsEmail, IsString, MinLength } from 'class-validator'
+import { IsString, MinLength } from 'class-validator'
 
 export class CreateUserDto {
-  @IsEmail()
+  @IsString()
   username: string
+
+  @IsString()
+  nurseId: string
 
   @IsString()
   firstName: string
