@@ -11,7 +11,8 @@ ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /usr/src/app
 COPY package.json ./
-RUN npm install --prod
+RUN npm install -g pnpm
+RUN pnpm install --prod
 COPY . .
 COPY --from=build /usr/src/app/dist ./dist
 CMD ["node", "dist/main"]

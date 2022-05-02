@@ -13,8 +13,8 @@ import { GenericConfig } from './pkg/config/generic.config'
 import { PatientEntity } from './pkg/entity/patient/patient.entity'
 import { ResultEntity } from './pkg/entity/result/result.entity'
 import { UserEntity } from './pkg/entity/user/user.entity'
+import { ResultModule } from './result/result.module'
 import { UserModule } from './user/user.module'
-import { ResultModule } from './result/result.module';
 
 @Module({
   imports: [
@@ -41,6 +41,7 @@ import { ResultModule } from './result/result.module';
           genericCofig.mode === 'production' ? false : dbConfig.isDrop,
         logging: dbConfig.isLog,
         namingStrategy: new SnakeNamingStrategy(),
+        ...(dbConfig.isSSL && {ssl:{ca:dbConfig.caCert}})
       }),
       inject: [DatabaseConfig.KEY, GenericConfig.KEY],
     }),
