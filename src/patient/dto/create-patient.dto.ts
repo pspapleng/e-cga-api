@@ -1,8 +1,15 @@
 import { Type } from 'class-transformer'
 import { IsDate, IsEnum, IsNumber, IsString } from 'class-validator'
-import { Gender } from 'src/pkg/entity/patient/gender.enum'
+import { GENDER } from 'src/pkg/entity/patient/gender.enum'
+import { IPatient } from 'src/pkg/entity/patient/patient.interface'
+import { IBase } from 'src/pkg/entity/_base/base.interface'
 
-export class CreatePatientDto {
+export type ICreatePatientDto = Omit<
+  IPatient,
+  keyof IBase | 'hn' | 'user' | 'result'
+>
+
+export class CreatePatientDto implements ICreatePatientDto {
   @IsString()
   firstName: string
 
@@ -13,8 +20,8 @@ export class CreatePatientDto {
   @Type(() => Date)
   dob: Date
 
-  @IsEnum(Gender)
-  gender: Gender
+  @IsEnum(GENDER)
+  gender: GENDER
 
   @IsNumber()
   height: number

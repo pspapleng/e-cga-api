@@ -12,3 +12,4 @@ FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-${VARIANT}
 
 # [Optional] Uncomment if you want to install more global node modules
 RUN su node -c "npm install -g pnpm@next-7"
+RUN su node -c "npm i -g @nestjs/cli"

@@ -1,0 +1,46 @@
+[
+  {
+    "_id": "ce38adfa-cf78-4507-930b-6494c962fed3",
+    "colName": "e-cga-api",
+    "created": "2022-04-29T14:51:09.379Z",
+    "sortNum": 10000,
+    "folders": [
+      {
+        "_id": "51fec7a5-e4f5-4c2e-801b-bb6ef24669db",
+        "name": "patient",
+        "containerId": "",
+        "created": "2022-04-29T14:52:40.345Z",
+        "sortNum": 10000,
+        "settings": {
+          "headers": [],
+          "auth": {
+            "type": "bearer",
+            "bearer": "{{access_token}}"
+          },
+          "tests": []
+        }
+      },
+      {
+        "_id": "d02d999a-3c28-4d9c-9ad5-eefb56a26f1a",
+        "name": "auth",
+        "containerId": "",
+        "created": "2022-04-29T14:54:15.151Z",
+        "sortNum": 20000
+      },
+      {
+        "_id": "9da39391-78cd-485d-88dc-7a8ab3785127",
+        "name": "user",
+        "containerId": "",
+        "created": "2022-04-29T14:56:11.986Z",
+        "sortNum": 30000
+      },
+      {
+        "_id": "dbb03b86-ebbb-4ab6-a2e3-79ffc65d7103",
+        "name": "result",
+        "containerId": "",
+        "created": "2022-04-29T17:37:23.234Z",
+        "sortNum": 40000
+      }
+    ]
+  }
+]

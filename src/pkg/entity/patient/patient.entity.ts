@@ -1,12 +1,19 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm'
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm'
 import { ResultEntity } from '../result/result.entity'
 import { UserEntity } from '../user/user.entity'
 import { BaseEntity } from '../_base/base.entity'
-import { Gender } from './gender.enum'
+import { GENDER } from './gender.enum'
 
 @Entity({ name: 'patient' })
 export class PatientEntity extends BaseEntity {
-  @Column({ type: 'varchar', length: 10, unique: true })
+  @PrimaryGeneratedColumn('increment')
   hn: string
 
   @Column({ type: 'varchar', length: 255, nullable: true })
@@ -18,22 +25,22 @@ export class PatientEntity extends BaseEntity {
   @Column({ type: 'timestamptz' })
   dob: Date
 
-  @Column({ type: 'enum', enum: Gender })
-  gender: Gender
+  @Column({ type: 'enum', enum: GENDER })
+  gender: GENDER
 
-  @Column({ type: 'numeric' })
+  @Column({ type: 'int', nullable: true })
   height: number
 
-  @Column({ type: 'numeric' })
+  @Column({ type: 'int' })
   weight: number
 
-  @Column({ type: 'numeric' })
+  @Column({ type: 'int' })
   bmi: number
 
-  @Column({ type: 'numeric' })
+  @Column({ type: 'int' })
   waistline: number
 
-  @Column({ type: 'numeric' })
+  @Column({ type: 'int' })
   fallHistory: number
 
   @ManyToOne(() => UserEntity, (user) => user.patient)
