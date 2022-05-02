@@ -51,6 +51,7 @@ export class PatientService {
     const patients = await this.patientRepository.find({
       take: query.limit,
       skip: query.skip,
+      relations: ['result'],
     })
 
     return patients
