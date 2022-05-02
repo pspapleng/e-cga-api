@@ -58,7 +58,14 @@ export class PatientService {
   }
 
   async getById(id: string): Promise<IPatient> {
-    const patient = await this.patientRepository.findOneOrFail({ id })
+    const patient = await this.patientRepository.findOneOrFail(
+      {
+        id,
+      },
+      {
+        relations: ['result'],
+      },
+    )
 
     return patient
   }
