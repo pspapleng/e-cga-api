@@ -17,7 +17,10 @@ class ResultFormDto implements IFormResult {
   OCA: string
 
   @IsString()
-  UIA: string
+  FallRisk: string
+
+  @IsString()
+  TUGT: string
 
   @IsString()
   EYES: string
