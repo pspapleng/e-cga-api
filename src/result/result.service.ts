@@ -24,14 +24,14 @@ export class ResultService {
     result.patient = patient
     result.result = dto.result
 
-    return await this.resultRepository.save(result)
+    return this.resultRepository.save(result)
   }
 
   async getPagination(query: QueryResultDto): Promise<IResult[]> {
     const patient = await this.patientRepository.findOneOrFail({
       id: query.patientId,
     })
-    return await this.resultRepository.find({
+    return this.resultRepository.find({
       where: {
         patient: patient,
       },
@@ -41,6 +41,6 @@ export class ResultService {
   }
 
   async getById(id: string): Promise<IResult> {
-    return await this.resultRepository.findOneOrFail({ id })
+    return this.resultRepository.findOneOrFail({ id })
   }
 }
