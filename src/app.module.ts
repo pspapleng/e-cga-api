@@ -41,7 +41,7 @@ import { UserModule } from './user/user.module'
           genericCofig.mode === 'production' ? false : dbConfig.isDrop,
         logging: dbConfig.isLog,
         namingStrategy: new SnakeNamingStrategy(),
-        ...(dbConfig.isSSL && {ssl:{ca:dbConfig.caCert}})
+        ...(dbConfig.isSSL && { ssl: { ca: dbConfig.caCert } }),
       }),
       inject: [DatabaseConfig.KEY, GenericConfig.KEY],
     }),
