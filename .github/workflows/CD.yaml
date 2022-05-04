@@ -36,4 +36,4 @@ jobs:
           file: ./Dockerfile
           target: production
           tags: |
-            ghcr.io/pspapleng/anodos:${{ steps.get_release.outputs.tag_name }}
+            ghcr.io/pspapleng/e-cga-api:${{ steps.get_release.outputs.tag_name }}
