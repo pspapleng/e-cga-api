@@ -267,21 +267,23 @@
     "colId": "ce38adfa-cf78-4507-930b-6494c962fed3",
     "containerId": "51fec7a5-e4f5-4c2e-801b-bb6ef24669db",
     "name": "get patient  pagination",
-    "url": "{{base_url}}/patient?skip=1&limit=1",
+    "url": "{{base_url}}/patient",
     "method": "GET",
     "sortNum": 65000,
     "created": "2022-04-29T17:17:23.211Z",
-    "modified": "2022-04-29T17:17:47.387Z",
+    "modified": "2022-05-04T04:08:58.333Z",
     "headers": [],
     "params": [
       {
         "name": "skip",
         "value": "1",
+        "isDisabled": true,
         "isPath": false
       },
       {
         "name": "limit",
         "value": "1",
+        "isDisabled": true,
         "isPath": false
       }
     ],
@@ -300,12 +302,12 @@
     "method": "POST",
     "sortNum": 80000,
     "created": "2022-04-29T17:37:30.143Z",
-    "modified": "2022-04-29T17:52:13.744Z",
+    "modified": "2022-05-04T04:04:53.532Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"patientId\": \"{{patient_id}}\",\n  \"result\": {\n    \"MNA\": \"{{#string}}\",\n    \"OCA\": \"{{#string}}\",\n    \"UIA\": \"{{#string}}\",\n    \"EYES\": \"{{#string}}\",\n    \"KNEE\": \"{{#string}}\",\n    \"OSTA\": \"{{#string}}\"\n  }\n}",
+      "raw": "{\n  \"patientId\": \"{{patient_id}}\",\n  \"result\": {\n    \"MNA\": \"{{#string}}\",\n    \"OCA\": \"{{#string}}\",\n    \"UIA\": \"{{#string}}\",\n    \"EYES\": \"{{#string}}\",\n    \"KNEE\": \"{{#string}}\",\n    \"OSTA\": \"{{#string}}\",\n    \"FallRisk\": \"{{#string}}\",\n    \"TUGT\": \"{{#string}}\"\n  }\n}",
       "form": []
     },
     "auth": {

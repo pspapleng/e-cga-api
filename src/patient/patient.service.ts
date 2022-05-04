@@ -30,8 +30,7 @@ export class PatientService {
     patient.fallHistory = dto.fallHistory
     patient.user = user
 
-    const result = await this.patientRepository.save(patient)
-    return result
+    return this.patientRepository.save(patient)
   }
 
   public async updateById(
@@ -42,24 +41,26 @@ export class PatientService {
 
     patient = { ...patient, ...dto }
 
-    const result = await this.patientRepository.save(patient)
-
-    return result
+    return this.patientRepository.save(patient)
   }
 
   async getPagination(query: QueryPatientDto): Promise<IPatient[]> {
-    const patients = await this.patientRepository.find({
+    return this.patientRepository.find({
       take: query.limit,
       skip: query.skip,
+      relations: ['result'],
     })
-
-    return patients
   }
 
   async getById(id: string): Promise<IPatient> {
-    const patient = await this.patientRepository.findOneOrFail({ id })
-
-    return patient
+    return this.patientRepository.findOneOrFail(
+      {
+        id,
+      },
+      {
+        relations: ['result'],
+      },
+    )
   }
 
   async deleteById(id: string): Promise<boolean> {

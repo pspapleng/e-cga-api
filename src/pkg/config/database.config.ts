@@ -7,6 +7,8 @@ export const DatabaseConfig = registerAs('database', () => ({
   database: process.env.DB_DATABASE || 'postgres',
   username: process.env.DB_USERNAME || 'postgres',
   password: process.env.DB_PASSWORD || 'postgres',
+  caCert: process.env.DB_CA_CERT || '',
+  isSSL: parseBoolean(process.env.DB_SSL || 'false'),
   isSync: parseBoolean(process.env.DB_SYNC || 'false'),
   isDrop: parseBoolean(process.env.DB_DROP || 'false'),
   isLog: parseBoolean(process.env.DB_LOG || 'false'),
