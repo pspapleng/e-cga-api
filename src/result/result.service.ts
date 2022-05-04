@@ -37,10 +37,14 @@ export class ResultService {
       },
       skip: query.skip,
       take: query.limit,
+      relations: ['patient', 'patient.user'],
     })
   }
 
   async getById(id: string): Promise<IResult> {
-    return this.resultRepository.findOneOrFail({ id })
+    return this.resultRepository.findOneOrFail(
+      { id },
+      { relations: ['patient', 'patient.user'] },
+    )
   }
 }
